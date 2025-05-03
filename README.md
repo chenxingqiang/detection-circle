@@ -1,92 +1,111 @@
-# Circle Detection and Roundness Calculation
+# 基于图像处理的圆形检测与圆度测量系统
 
-This project implements algorithms to detect circles in product images and calculate their roundness tolerance.
+本项目是一个基于Python的圆形检测与圆度测量系统，作为学士学位论文的实践部分。
 
-## Project Structure
+## 论文结构
+
+### 第一章 绪论
+- 研究背景与意义
+- 国内外研究现状
+- 论文主要研究内容
+- 论文组织结构
+
+### 第二章 图像处理基础理论
+- 数字图像基础
+- 图像预处理技术
+- 边缘检测算法
+- 霍夫变换原理
+
+### 第三章 圆形检测算法研究
+- 传统霍夫变换
+- 改进的霍夫变换
+- 圆度测量方法
+- 算法性能分析
+
+### 第四章 系统设计与实现
+- 系统总体设计
+- 图像采集模块
+- 圆形检测模块
+- 圆度测量模块
+- 结果显示模块
+
+### 第五章 实验结果与分析
+- 实验环境与数据集
+- 圆形检测结果分析
+- 圆度测量精度分析
+- 系统性能评估
+
+### 第六章 总结与展望
+- 工作总结
+- 创新点
+- 未来展望
+
+## 项目结构
+
 ```
 detection-circle/
-├── dataset/            # Contains input images
-├── examples/           # Example result images
-├── src/                # Source code
-│   ├── image_processor.py
-│   ├── contour_processor.py
-│   ├── circle_detector.py
-│   ├── roundness_calculator.py
-│   ├── visualizer.py
-│   └── main.py
-├── tests/              # Test cases
-│   ├── test_image_processor.py
-│   ├── test_contour_processor.py
-│   ├── test_circle_detector.py
-│   └── test_roundness_calculator.py
-├── requirements.txt    # Dependencies
-└── README.md           # Project documentation
+├── src/
+│   ├── preprocessing/      # 图像预处理模块
+│   ├── detection/         # 圆形检测模块
+│   ├── measurement/      # 圆度测量模块
+│   └── visualization/    # 结果可视化模块
+├── tests/                # 测试用例
+├── data/                # 测试图像数据
+├── docs/                # 文档
+└── requirements.txt     # 项目依赖
 ```
 
-## Installation
+## 环境要求
 
+- Python 3.8+
+- OpenCV
+- NumPy
+- Matplotlib
+- scikit-image
+
+## 安装与使用
+
+1. 克隆仓库
+```bash
+git clone [repository-url]
+cd detection-circle
+```
+
+2. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-
-### Processing a Single Image
-
+3. 运行测试
 ```bash
-python src/main.py --image_path dataset/9.jpg --method min_zone
+python -m pytest tests/
 ```
 
-### Processing All Images in a Directory
+## 主要功能
 
-```bash
-python src/main.py --image_path dataset --method min_zone
-```
+1. 图像预处理
+   - 灰度转换
+   - 噪声消除
+   - 边缘增强
 
-### Available Methods for Roundness Calculation
+2. 圆形检测
+   - 基于霍夫变换的圆形检测
+   - 改进的圆形检测算法
 
-- `min_zone`: Minimum Zone Method - Finds two concentric circles with minimum radial difference that contain all points
-- `least_squares`: Least Squares Circle Method - Finds a circle that minimizes the sum of squares of distances from points to the circle
-- `min_circumscribed`: Minimum Circumscribed Circle Method - For external circles, finds the smallest circle that contains all points
-- `max_inscribed`: Maximum Inscribed Circle Method - For internal circles, finds the largest circle that is contained by all points
+3. 圆度测量
+   - 轮廓提取
+   - 圆度计算
+   - 误差分析
 
-### Output
+4. 结果可视化
+   - 检测结果标注
+   - 圆度数据展示
+   - 误差分析图表
 
-The program generates output files in the `output` directory. For each processed image, it creates a subdirectory containing:
+## 贡献者
 
-- `edges.jpg`: Edge detection result
-- `contours.jpg`: Contour detection result
-- `circles.jpg`: Circle detection result
-- `result_X_method.jpg`: Roundness calculation result for each detected circle using the specified method
+[您的姓名]
 
-## Features
+## 许可证
 
-1. Extract product contours from images
-2. Implement contour single-line processing
-3. Implement geometric description of the single-line contours
-4. Calculate roundness tolerance using various methods
-
-## Result Examples
-
-### Edge Detection
-![Edge Detection Example](examples/edges_example.jpg)
-
-### Contour Detection
-![Contour Detection Example](examples/contours_example.jpg)
-
-### Circle Detection
-![Circle Detection Example](examples/circles_example.jpg)
-
-### Roundness Calculation
-
-#### Minimum Zone Method
-![Minimum Zone Method Example](examples/roundness_min_zone_example.jpg)
-
-#### Least Squares Method
-![Least Squares Method Example](examples/roundness_least_squares_example.jpg)
-
-#### Minimum Circumscribed Circle Method
-![Minimum Circumscribed Circle Method Example](examples/roundness_min_circumscribed_example.jpg)
-
-#### Maximum Inscribed Circle Method
-![Maximum Inscribed Circle Method Example](examples/roundness_max_inscribed_example.jpg)
+MIT License
